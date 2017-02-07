@@ -1,0 +1,14 @@
+cartodb==0.8.1
+click==6.7
+Flask==0.12
+httplib2==0.10.2
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+mpmath==0.19
+oauth2==1.9.0.post1
+pandas==0.19.2
+profig==0.4.1
+scipy==0.18.1
+sympy==1.0
+Werkzeug==0.11.11

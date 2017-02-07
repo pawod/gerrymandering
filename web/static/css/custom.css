@@ -1,0 +1,55 @@
+.voffset01 {
+    margin-top: 0.3em;
+}
+
+.voffset02 {
+    margin-top: 0.5em;
+}
+
+.voffset03 {
+    margin-top: 1em;
+}
+
+.voffset04 {
+    margin-top: 2em;
+}
+
+.voffset05 {
+    margin-top: 4em;
+}
+
+.voffset06 {
+    margin-top: 8em;
+}
+
+.voffset07 {
+    margin-top: 16em;
+}
+
+.voffset08 {
+    margin-top: 32em;
+}
+
+.cartomap {
+    width: 100%;
+    height: 95%;
+    border: .1em solid lightgray;
+    border-radius: .3em;
+}
+
+.col-cartomap {
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+.btn.btn-edge {
+    border-radius: 0 !important;
+}
+
+.input-group-addon, .input-group-btn {
+    width: 9em;
+}
+
+.loading {
+    opacity: .4
+}

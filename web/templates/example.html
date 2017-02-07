@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Team Victory: Gerrymandering</h2>
+
+    <div class="dropdown">
+        <button class="dropbtn">Show party results</button>
+        <div class="dropdown-content">
+            <a href="#" onclick="renderVotes(0)">SPD</a>
+            <a href="#" onclick="renderVotes(1)">CDU</a>
+            <a href="#" onclick="renderVotes(2)">Grüne</a>
+            <a href="#" onclick="renderVotes(3)">Die Linke / PDS</a>
+            <a href="#" onclick="renderVotes(4)">FDP</a>
+            <a href="#" onclick="renderVotes(5)">Piraten</a>
+            <a href="#" onclick="renderVotes(6)">AfD</a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Calculate wasted votes</button>
+        <div class="dropdown-content">
+            <a href="#" onclick="calculateVoteEfficiency(0)">SPD</a>
+            <a href="#" onclick="calculateVoteEfficiency(1)">CDU</a>
+            <a href="#" onclick="calculateVoteEfficiency(2)">Grüne</a>
+            <a href="#" onclick="calculateVoteEfficiency(3)">Die Linke / PDS</a>
+            <a href="#" onclick="calculateVoteEfficiency(4)">FDP</a>
+            <a href="#" onclick="calculateVoteEfficiency(5)">Piraten</a>
+            <a href="#" onclick="calculateVoteEfficiency(6)">AfD</a>
+        </div>
+    </div>
+
+    <div id="map" style="width:100%;height:85%;"></div>
+
+    <script>
+        $(document).ready(function () {
+            init();
+        });
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="static/css/example.css">
+{% endblock %}

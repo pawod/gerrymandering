@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-8 col-cartomap voffset03">
+                        <div class="cartomap" id="container-cartomap">
+                        </div>
+                        <div class='uil-reload-css' hidden id="loader"
+                             style="-webkit-transform:scale(0.6);width: 100%; position: absolute;left:25%; top: 40%;">
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 voffset03">
+                        <div class="row">
+                            <div class="panel panel-default sidepanel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p style="font-size: 1.5em">Controls</p>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2  col-sm-2 col-xs-5 pull-right"
+                                             style="padding-left: 0; min-width: 102px; max-width: 120px">
+                                            {# fix for small screens #}
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-default" id="button-reset"
+                                                        data-toggle="tooltip"
+                                                        data-placement="bottom"
+                                                        data-delay="300"
+                                                        title="Reset all Controls">
+                                                    <span class="glyphicon glyphicon-repeat"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    Data Set:
+                                                </div>
+                                                <div class="input-group-btn">
+                                                    <button type="button" id="btn-dataset-name"
+                                                            class="btn btn-default dropdown-toggle"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Select File <span
+                                                            class="caret"
+                                                            style=""></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" id="menu-dataset">
+                                                        {# loaded dynamically #}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row voffset04">
+                                        <div class="col-lg-12">
+                                            <div class="input-group" data-toggle="tooltip" data-placement="right"
+                                                 title="Calculates a score as indicator possibly gerrymandered districts.">
+                                                <div class="input-group-addon">
+                                                    Gerry-Score:
+                                                </div>
+                                                <div class="input-group-btn">
+                                                    <button type="button" id="btn-measure"
+                                                            class="btn btn-default btn-edge dropdown-toggle disabled"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Select Metric <span
+                                                            class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Boundary Complexity</a></li>
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a href="#">Area Momentum</a></li>
+                                                        <li><a href="#">Population Momentum</a></li>
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a>Convex Hull Area</a>
+                                                        <li><a style="color:lightgray">Convex Hull Population</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="input-group-btn">
+                                                    <div class="btn btn-info disabled" id="btn-show-measure">Show
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row voffset02">
+                                        <div class="col-lg-12">
+                                            <div class="input-group" data-toggle="tooltip" data-placement="right"
+                                                 title="Shows the voting results for the selected party by district.">
+                                                <div class="input-group-addon">
+                                                    Party Results:
+                                                </div>
+                                                <div class="input-group-btn">
+                                                    <button type="button" id="btn-votes"
+                                                            class="btn btn-default btn-edge dropdown-toggle disabled"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">Select Party <span
+                                                            class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu" id="menu-votes">
+                                                        {# loaded dynamically #}
+                                                    </ul>
+                                                </div>
+                                                <div class="input-group-btn">
+                                                    <div class="btn btn-info disabled" id="btn-show-votes">Show
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="panel-results-row" hidden>
+                            <div class="panel panel-default sidepanel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p style="font-size: 1.5em">Election Results</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12" id="panel-results-body-col" style="text-align: center">
+                                            <!-- render chart here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="panel-statistics-row" hidden>
+                            <div class="panel panel-default sidepanel">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p style="font-size: 1.5em">Statistics</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12" id="panel-results-body-col" style="text-align: center">
+                                            <!-- render chart here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            initTooltips();
+            initResetButton();
+            initControlPanelButtons();
+            renderMap();
+        })
+    </script>
+{% endblock %}
+
+
