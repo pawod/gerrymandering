@@ -1,7 +1,5 @@
 # gerrymandering
 
-[https://github.com/pawod/gerrymandering/blob/master/screenshot.png|alt=octocat]
-
 ## ABOUT
 
 For more information about this project visit the project's [wiki](https://github.com/pawod/gerrymandering/wiki).
