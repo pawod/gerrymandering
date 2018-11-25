@@ -1,6 +1,6 @@
 # gerrymandering
 
-[[https://github.com/pawod/gerrymandering/blob/master/screenshot.png|alt=octocat]]
+[https://github.com/pawod/gerrymandering/blob/master/screenshot.png|alt=octocat]
 
 ## ABOUT
 
